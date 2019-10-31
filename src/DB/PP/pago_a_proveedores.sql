@@ -12,7 +12,6 @@ CREATE TABLE purchase_payment_plan(
     remaining_amount REAL NOT NULL,
     number_of_payments INT NOT NULL,
     payment_frequency_in_days INT NOT NULL,
-    late_fee_flat_charge REAL NOT NULL,
     late_fee_percentage_charge REAL NOT NULL
 );
 
