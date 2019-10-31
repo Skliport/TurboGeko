@@ -1,4 +1,4 @@
-package Formularios;
+package GUI.PP;
 
 public class frmPago_proveedores extends javax.swing.JFrame {
 
