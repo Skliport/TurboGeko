@@ -264,7 +264,7 @@ public class frmPago_proveedores extends javax.swing.JFrame {
 
         btnGuardarRegistro.setBackground(new java.awt.Color(255, 255, 255));
         btnGuardarRegistro.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        btnGuardarRegistro.setText("Guardar registro");
+        btnGuardarRegistro.setText("Realizar pago");
         btnGuardarRegistro.setToolTipText("");
         btnGuardarRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardarRegistro.setEnabled(false);
@@ -286,8 +286,8 @@ public class frmPago_proveedores extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnNuevoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGuardarRegistro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnGuardarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLimpiarCampos)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -317,7 +317,7 @@ public class frmPago_proveedores extends javax.swing.JFrame {
         lblFechaPago.setToolTipText("");
 
         lblAbono.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        lblAbono.setText("Monto:");
+        lblAbono.setText("Monto a cancelar:");
         lblAbono.setToolTipText("");
 
         txtAbono.setEditable(false);
@@ -368,50 +368,53 @@ public class frmPago_proveedores extends javax.swing.JFrame {
         jpIngresoDatosLayout.setHorizontalGroup(
             jpIngresoDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpIngresoDatosLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
                 .addGroup(jpIngresoDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpIngresoDatosLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
                         .addGroup(jpIngresoDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jpIngresoDatosLayout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addComponent(lblAbono)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jpIngresoDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtMora, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jpIngresoDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jpIngresoDatosLayout.createSequentialGroup()
+                                        .addComponent(txtAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIngresoDatosLayout.createSequentialGroup()
+                                        .addComponent(lblAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(33, 33, 33)))
+                                .addGroup(jpIngresoDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtMora, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jpIngresoDatosLayout.createSequentialGroup()
+                                        .addGap(63, 63, 63)
+                                        .addComponent(lblMora)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jpIngresoDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTotalAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jpIngresoDatosLayout.createSequentialGroup()
+                                        .addGap(62, 62, 62)
+                                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jpIngresoDatosLayout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(lblMora)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jpIngresoDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTotalAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jpIngresoDatosLayout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jpIngresoDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jpIngresoDatosLayout.createSequentialGroup()
+                                        .addGap(33, 33, 33)
+                                        .addComponent(lblIdOrden)
+                                        .addGap(54, 54, 54))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIngresoDatosLayout.createSequentialGroup()
+                                        .addComponent(txtIdOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)))
+                                .addGroup(jpIngresoDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtIdPago, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIngresoDatosLayout.createSequentialGroup()
+                                        .addComponent(lblIdPago)
+                                        .addGap(45, 45, 45)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jpIngresoDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jpIngresoDatosLayout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
+                                        .addComponent(lblNumPago))
+                                    .addComponent(txtNumPago, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jdFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jpIngresoDatosLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(lblFechaPago))
-                    .addComponent(jdFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jpIngresoDatosLayout.createSequentialGroup()
-                        .addGroup(jpIngresoDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpIngresoDatosLayout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(lblIdOrden)
-                                .addGap(54, 54, 54))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIngresoDatosLayout.createSequentialGroup()
-                                .addComponent(txtIdOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addGroup(jpIngresoDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIdPago, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIngresoDatosLayout.createSequentialGroup()
-                                .addComponent(lblIdPago)
-                                .addGap(45, 45, 45)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jpIngresoDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpIngresoDatosLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(lblNumPago))
-                            .addComponent(txtNumPago, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(57, 57, 57)
+                        .addComponent(lblFechaPago)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -442,11 +445,11 @@ public class frmPago_proveedores extends javax.swing.JFrame {
                     .addComponent(txtAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMora, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTotalAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addComponent(lblFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jdFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addGap(36, 36, 36))
         );
 
         jpIngresoDatosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtAbono, txtIdOrden, txtIdPago, txtMora, txtNumPago, txtTotalAbono});
@@ -1300,7 +1303,7 @@ public class frmPago_proveedores extends javax.swing.JFrame {
     private javax.swing.JLabel lblTituloPagosProveedores2;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lblTotalCancelado;
-    private javax.swing.JLabel lblTotalMoraCancelada;
+    javax.swing.JLabel lblTotalMoraCancelada;
     private javax.swing.JLabel lblTotalPendiente;
     private javax.swing.JTextField txtAbono;
     private javax.swing.JTextField txtBusqueda;
