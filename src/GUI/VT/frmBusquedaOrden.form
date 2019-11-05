@@ -102,10 +102,8 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnBuscar" pref="142" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtBusquedaOrdenPor" max="32767" attributes="0"/>
-                              <Component id="jComboBox1" pref="142" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="txtBusquedaOrdenPor" max="32767" attributes="0"/>
+                          <Component id="jComboBox1" pref="142" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="54" max="32767" attributes="0"/>
                   </Group>

@@ -3,16 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mod_EC;
+package GUI.mod_EC;
 
-import mod_EC.Ganancias;
-import mod_EC.ProductoComprado;
-import mod_EC.FechaGanancia;
-import mod_EC.PagoEmpleados;
-import mod_EC.FechaInversion;
-import mod_EC.ClientesPago;
-import mod_EC.ProductoVendido;
-import javax.swing.JFrame;
 
 /**
  *

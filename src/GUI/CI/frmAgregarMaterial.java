@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modulo_ci;
+package GUI.CI;
 /**
  *
  * @author Alejandro
@@ -46,7 +46,6 @@ public class frmAgregarMaterial extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jButton16 = new javax.swing.JButton();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar Material");
@@ -110,16 +109,13 @@ public class frmAgregarMaterial extends javax.swing.JFrame {
 
         jButton16.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButton16.setText("Agregar");
-        jButton16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton16.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton16jButton7ActionPerformed(evt);
             }
         });
         jPanel20.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 120, 30));
-
-        jDateChooser2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel20.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 140, -1));
 
         jPanel1.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 320));
 
@@ -186,7 +182,6 @@ public class frmAgregarMaterial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton16;
     private javax.swing.JComboBox<String> jComboBox16;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel77;
