@@ -53,7 +53,6 @@ public class frmPago_proveedores extends javax.swing.JFrame {
         lblTotal = new javax.swing.JLabel();
         txtIdPago = new javax.swing.JTextField();
         lblIdPago = new javax.swing.JLabel();
-        jdFechaPago = new com.toedter.calendar.JDateChooser();
         jpDetallesPago = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jtMonto = new javax.swing.JTable();
@@ -357,12 +356,6 @@ public class frmPago_proveedores extends javax.swing.JFrame {
         lblIdPago.setText("ID de pago:");
         lblIdPago.setToolTipText("");
 
-        jdFechaPago.setDateFormatString("dd/MM/yyyy");
-        jdFechaPago.setEnabled(false);
-        jdFechaPago.setFocusCycleRoot(true);
-        jdFechaPago.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jdFechaPago.setPreferredSize(new java.awt.Dimension(101, 24));
-
         javax.swing.GroupLayout jpIngresoDatosLayout = new javax.swing.GroupLayout(jpIngresoDatos);
         jpIngresoDatos.setLayout(jpIngresoDatosLayout);
         jpIngresoDatosLayout.setHorizontalGroup(
@@ -410,8 +403,7 @@ public class frmPago_proveedores extends javax.swing.JFrame {
                                     .addGroup(jpIngresoDatosLayout.createSequentialGroup()
                                         .addGap(26, 26, 26)
                                         .addComponent(lblNumPago))
-                                    .addComponent(txtNumPago, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jdFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtNumPago, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jpIngresoDatosLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(lblFechaPago)))
@@ -447,9 +439,7 @@ public class frmPago_proveedores extends javax.swing.JFrame {
                     .addComponent(txtTotalAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(lblFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jdFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         jpIngresoDatosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtAbono, txtIdOrden, txtIdPago, txtMora, txtNumPago, txtTotalAbono});
@@ -603,7 +593,7 @@ public class frmPago_proveedores extends javax.swing.JFrame {
             jpConsultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConsultasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnIrAConsultaDePagos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnIrAConsultaDePagos, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1267,7 +1257,6 @@ public class frmPago_proveedores extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jbpPrincipal;
-    private com.toedter.calendar.JDateChooser jdFechaPago;
     private javax.swing.JPanel jpAcciones;
     private javax.swing.JPanel jpBusquedas;
     private javax.swing.JPanel jpBusquedas1;
