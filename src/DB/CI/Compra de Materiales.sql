@@ -45,7 +45,7 @@ CREATE TABLE purchase_details(
 	quantity INT NOT NULL,
 	unit_price REAL NOT NULL
 );
-
+--Solo esta de muestra--
 CREATE TABLE employees(
 	employee_id SERIAL PRIMARY KEY,
 	name VARCHAR(20)
