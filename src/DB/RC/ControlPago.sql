@@ -16,7 +16,7 @@ id_sale INT NOT NULL
 CREATE TABLE pending_fee(
 pending_fee_id SERIAL,
 initial_balance REAL NOT NULL,
-fee REAL NOT NULL, --CUOTA PUEDE QUEDAR A LA MITAD.
+fee REAL NOT NULL, --CUOTA PUEDE QUEDAR A LA MITAD..
 required_date  DATE NOT NULL,
 final_balance REAL NOT NULL,
 state_pending_fee INT NOT NULL,
