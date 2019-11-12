@@ -1,5 +1,6 @@
 -- REGISTRO DE COBROS
 
+--Tabla de préstamos, dependiendo de una venta con su respectivo cliente.
 CREATE TABLE loan(
 loan_id SERIAL,
 amount REAL NOT NULL,
@@ -14,6 +15,9 @@ id_customer INT NOT NULL,
 id_sale INT NOT NULL
 );
 
+-- Tabla de cuotas pendientes: el plan de pago, donde se agregarán registros 
+-- al momento de agregar un préstamo.
+-- Acá estarán todas las cuotas con sus respectivos estados.
 CREATE TABLE pending_fee(
 pending_fee_id SERIAL,
 initial_balance REAL NOT NULL,
@@ -24,6 +28,8 @@ pending_fee_state INT NOT NULL, --0.Pending 1.Completed 3.Late fee
 loan_id INT NOT NULL
 );
 
+-- Tabla de pagos,
+-- se pagará uno respecto a un registro en la tabla de pagos pendientes.
 CREATE TABLE loan_payment(
 loan_payment_id SERIAL,
 payment_date DATE NOT NULL,
@@ -31,6 +37,8 @@ paid_amount REAL NOT NULL,
 pending_fee_id INT NOT NULL
 );
 
+--Tabla de moras: se creará un registro acá dependiendo de un pago pendiente, si se ha alcanzado la
+--fecha límite de pago. Cuando sea pagado se actualizarán los datos restantes en la tabla.
 CREATE TABLE loan_late_fee(
 loan_late_fee_id SERIAL,
 total REAL NOT NULL,
@@ -40,12 +48,16 @@ paid_amount REAL,
 pending_fee_id INT NOT NULL
 );
 
+-- Tabla de pagos adelantados en el préstamo: si hay adelantos
+-- actualiza los últimos registros de la tabla
+-- de pagos pendientes.
 CREATE TABLE loan_payment_upfront(
 loan_payment_upfront_id SERIAL,
 paid_amount REAL NOT NULL,
 payment_date DATE NOT NULL,
 pending_fee_id INT NOT NULL
 );
+
 --LLAVES PRIMARIAS: REGISTRO DE COBROS
 ALTER TABLE ONLY loan
 ADD CONSTRAINT pk_loan PRIMARY KEY (loan_id);
