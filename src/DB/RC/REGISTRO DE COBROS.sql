@@ -81,7 +81,7 @@ ALTER TABLE ONLY loan
     ADD CONSTRAINT fk_loan_customer FOREIGN KEY (id_customer) REFERENCES customer;
 	
 ALTER TABLE ONLY loan
-	ADD CONSTRAINT fK_loan_sale FOREIGN KEY (id_sale) REFERENCES loan;
+	ADD CONSTRAINT fK_loan_sale FOREIGN KEY (id_sale) REFERENCES sale;
 
 ALTER TABLE ONLY pending_fee
     ADD CONSTRAINT fk_pending_fee_loan FOREIGN KEY (loan_id) REFERENCES loan;
