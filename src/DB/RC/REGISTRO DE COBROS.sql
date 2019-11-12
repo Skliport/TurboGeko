@@ -3,6 +3,7 @@
 --Tabla de préstamos, dependiendo de una venta con su respectivo cliente.
 CREATE TABLE loan(
 loan_id SERIAL,
+loan_number INT NOT NULL,
 amount REAL NOT NULL,
 initial_date DATE NOT NULL,
 final_date DATE NOT NULL,
