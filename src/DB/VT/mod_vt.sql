@@ -30,8 +30,7 @@ CREATE TABLE sale_detail(
 	discount real,
 	amount real,
 	id_sale int NOT NULL,
-	id_recipe int NOT NULL,
-	order_production_id int NOT NULL
+	id_finished_product int
 );
 
 CREATE TABLE product_log(
@@ -55,16 +54,13 @@ ALTER TABLE ONLY product_log
 ADD CONSTRAINT pk_id_product_log PRIMARY KEY (id_product_log);
 
 ALTER TABLE ONLY sale
-ADD CONSTRAINT fk_customer_id FOREIGN KEY (id_customer) REFERENCES customer;
+ADD CONSTRAINT fk_sale_customer FOREIGN KEY (id_customer) REFERENCES customer;
 
 ALTER TABLE ONLY sale_detail
-ADD CONSTRAINT fk_order_id FOREIGN KEY (order_id) REFERENCES orders;
+ADD CONSTRAINT fk_saleDetail_ FOREIGN KEY (id_sale) REFERENCES sale;
 
 ALTER TABLE ONLY sale_detail
-ADD CONSTRAINT fk_order_production_sale FOREIGN KEY (order_prodution_id) REFERENCES order_production;
-
-ALTER TABLE ONLY sale_detail
-ADD CONSTRAINT fk_recipe_sale FOREIGN KEY (id_recipe) REFERENCES recipe;
+ADD CONSTRAINT fk_finished_product_sale FOREIGN KEY (id_finished_product) REFERENCES finished_product;
 
 ALTER TABLE ONLY product_log
 ADD CONSTRAINT fk_product_log_sale FOREIGN KEY (id_sale) REFERENCES sale;
