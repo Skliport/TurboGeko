@@ -59,7 +59,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel4" pref="619" max="32767" attributes="0"/>
+                  <Component id="jPanel4" pref="623" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
@@ -107,11 +107,11 @@
                               <EmptySpace min="0" pref="19" max="32767" attributes="0"/>
                               <Component id="jPanel23" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jPanel7" alignment="0" pref="294" max="32767" attributes="0"/>
-                          <Component id="jPanel11" alignment="0" pref="294" max="32767" attributes="0"/>
-                          <Component id="jPanel19" alignment="0" pref="294" max="32767" attributes="0"/>
-                          <Component id="jPanel15" pref="294" max="32767" attributes="0"/>
-                          <Component id="jPanel25" pref="294" max="32767" attributes="0"/>
+                          <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jPanel11" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jPanel19" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jPanel15" max="32767" attributes="0"/>
+                          <Component id="jPanel25" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -130,26 +130,26 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel25" pref="39" max="32767" attributes="0"/>
-                          <Component id="jPanel5" pref="39" max="32767" attributes="0"/>
+                          <Component id="jPanel25" max="32767" attributes="0"/>
+                          <Component id="jPanel5" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel7" pref="39" max="32767" attributes="0"/>
-                          <Component id="jPanel9" pref="39" max="32767" attributes="0"/>
+                          <Component id="jPanel7" max="32767" attributes="0"/>
+                          <Component id="jPanel9" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel11" pref="39" max="32767" attributes="0"/>
-                          <Component id="jPanel13" pref="39" max="32767" attributes="0"/>
+                          <Component id="jPanel11" max="32767" attributes="0"/>
+                          <Component id="jPanel13" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel15" pref="39" max="32767" attributes="0"/>
-                          <Component id="jPanel17" pref="39" max="32767" attributes="0"/>
+                          <Component id="jPanel15" max="32767" attributes="0"/>
+                          <Component id="jPanel17" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel19" pref="39" max="32767" attributes="0"/>
-                          <Component id="jPanel21" pref="39" max="32767" attributes="0"/>
+                          <Component id="jPanel19" max="32767" attributes="0"/>
+                          <Component id="jPanel21" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jPanel23" pref="39" max="32767" attributes="0"/>
+                      <Component id="jPanel23" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
