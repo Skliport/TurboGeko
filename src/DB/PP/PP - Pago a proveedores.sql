@@ -3,7 +3,7 @@
 
 --! Toda instancia de este módulo contendrá dependencias respecto al módulo CI: Compra.
 -- Para realizar pruebas en este módulo de forma independiente es necesario crear una tabla
--- de prueba 'purchase' con una llave primaria 'purchase_id'.
+-- de prueba 'purchase_suppliers' con una llave primaria 'purchase_id'.
 
 /* - - - - 1. Tablas - - - - */
 
@@ -73,14 +73,14 @@ CREATE TABLE purchase_late_fee_payment_status(
 -- Purchase payment plan.
 ALTER TABLE purchase_payment_plan
 ADD CONSTRAINT fk_purchase_payment_plan_purchase 
-FOREIGN KEY (purchase_id) REFERENCES purchase (purchase_id),
+FOREIGN KEY (purchase_id) REFERENCES purchase_suppliers (purchase_id),
 ADD CONSTRAINT fk_purchase_payment_status 
 FOREIGN KEY (payment_plan_status_id) REFERENCES purchase_payment_plan_status (payment_plan_status_id);
 
 -- Purchase payment.
 ALTER TABLE purchase_payment
 ADD CONSTRAINT fk_purchase_payment_purchase 
-FOREIGN KEY (purchase_id) REFERENCES purchase (purchase_id),
+FOREIGN KEY (purchase_id) REFERENCES purchase_suppliers (purchase_id),
 ADD CONSTRAINT fk_purchase_payment_status 
 FOREIGN KEY (payment_status_id) REFERENCES purchase_payment_status (payment_status_id);
 
@@ -89,7 +89,7 @@ ALTER TABLE purchase_late_fee_payment
 ADD CONSTRAINT fk_purchase_late_fee_payment_purchase_payment 
 FOREIGN KEY (purchase_payment_id) REFERENCES purchase_payment (purchase_payment_id),
 ADD CONSTRAINT fk_purchase_late_fee_payment_purchase 
-FOREIGN KEY (purchase_id) REFERENCES purchase (purchase_id),
+FOREIGN KEY (purchase_id) REFERENCES purchase_suppliers (purchase_id),
 ADD CONSTRAINT fk_purchase_late_fee_payment_status 
 FOREIGN KEY (late_fee_payment_status_id) REFERENCES purchase_late_fee_payment_status (late_fee_payment_status_id);
 
@@ -98,7 +98,7 @@ ALTER TABLE purchase_payment_upfront
 ADD CONSTRAINT fk_purchase_payment_upfront_purchase_payment 
 FOREIGN KEY (purchase_payment_id) REFERENCES purchase_payment (purchase_payment_id),
 ADD CONSTRAINT fk_purchase_payment_upfront_purchase 
-FOREIGN KEY (purchase_id) REFERENCES purchase (purchase_id);
+FOREIGN KEY (purchase_id) REFERENCES purchase_suppliers (purchase_id);
 
 /* - - - - 3. Discriminantes - - - - */
 
