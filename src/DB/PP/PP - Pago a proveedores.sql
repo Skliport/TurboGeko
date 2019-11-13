@@ -107,14 +107,14 @@ INSERT INTO purchase_payment_plan_status (payment_plan_status_id, name)
 VALUES (default, 'Pendiente'); 
 INSERT INTO purchase_payment_plan_status (payment_plan_status_id, name)
 VALUES (default, 'Cancelado'); 
-INSERT INTO purchase_payment_plan_status (payment_plan_status_id, name)
-VALUES (default, 'En mora'); 
 
 -- Purchase payment status.
 INSERT INTO purchase_payment_status (payment_status_id, name)
 VALUES (default, 'Pendiente'); 
 INSERT INTO purchase_payment_status (payment_status_id, name)
 VALUES (default, 'Cancelado'); 
+INSERT INTO purchase_payment_status (payment_status_id, name)
+VALUES (default, 'En mora'); 
 
 -- Purchase late fee payment status.
 INSERT INTO purchase_late_fee_payment_status (late_fee_payment_status_id, name)
