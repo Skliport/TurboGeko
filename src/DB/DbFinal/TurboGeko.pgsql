@@ -1,12 +1,3 @@
---TABLAS QUE FALTARON
-CREATE TABLE employee(
-	id_employee serial PRIMARY KEY,
-	first_name varchar(25) NOT NULL,
-	last_name varchar(25) NOT NULL,
-	telephone varchar (50) NOT NULL,
-	dui varchar(20) NOT NULL,
-	email varchar(150) NOT NULL
-);
 
 -- OP Modulo
 CREATE TABLE IF NOT EXISTS order_production(
@@ -91,15 +82,6 @@ CREATE TABLE product_log(
 );
 
 --EC Modulo
-CREATE TABLE IF NOT EXISTS payment_employee(
-	id_payment_employee SERIAL PRIMARY KEY,
-	id_employee int not null,
-	payment_date date not null,
-	salary real not null,
-	isss real not null,
-	afp real not null,
-	notes varchar(60)
-);
 
 CREATE TABLE IF NOT EXISTS fixed_costs(
 	id_fixed_costs serial primary key,
@@ -212,7 +194,7 @@ CREATE TABLE purchase_suppliers_log(
 --RC
 CREATE TABLE loan(
 	loan_id SERIAL,
-	loan_number INT NOT NULL,
+	loan_number varchar(10) NOT NULL,
 	amount REAL NOT NULL,
 	initial_date DATE NOT NULL,
 	final_date DATE NOT NULL,
@@ -225,13 +207,13 @@ CREATE TABLE loan(
 	id_sale INT NOT NULL
 );
 
-CREATE TABLE pending_fee(
-	pending_fee_id SERIAL,
+CREATE TABLE loan_pending_fee(
+	loan_pending_fee_id SERIAL,
 	initial_balance REAL NOT NULL,
 	fee REAL NOT NULL,
 	required_date DATE NOT NULL,
 	final_balance REAL NOT NULL,
-	pending_fee_state INT NOT NULL,
+	loan_pending_fee_state INT NOT NULL,
 	loan_id INT NOT NULL
 );
 
@@ -239,7 +221,7 @@ CREATE TABLE loan_payment(
 	loan_payment_id SERIAL,
 	payment_date DATE NOT NULL,
 	paid_amount REAL NOT NULL,
-	pending_fee_id INT NOT NULL
+	loan_pending_fee_id INT NOT NULL
 );
 
 CREATE TABLE loan_late_fee(
@@ -248,14 +230,14 @@ CREATE TABLE loan_late_fee(
 	loan_late_fee_state INT NOT NULL,
 	late_fee_payment_date DATE,
 	paid_amount REAL,
-	pending_fee_id INT NOT NULL
+	loan_pending_fee_id INT NOT NULL
 );
 
 CREATE TABLE loan_payment_upfront(
 	loan_payment_upfront_id SERIAL,
 	paid_amount REAL NOT NULL,
 	payment_date DATE NOT NULL,
-	pending_fee_id INT NOT NULL
+	loan_pending_fee_id INT NOT NULL
 );
 
 --PP Modulo
@@ -401,9 +383,9 @@ ADD
 	CONSTRAINT pk_loan PRIMARY KEY (loan_id);
 
 ALTER TABLE
-	ONLY pending_fee
+	ONLY loan_pending_fee
 ADD
-	CONSTRAINT pk_pending_fee PRIMARY KEY (pending_fee_id);
+	CONSTRAINT pk_loan_pending_fee PRIMARY KEY (loan_pending_fee_id);
 
 ALTER TABLE
 	ONLY loan_payment
@@ -420,10 +402,14 @@ ALTER TABLE
 ADD
 	CONSTRAINT pk_loan_payment_upfront PRIMARY KEY (loan_payment_upfront_id);
 
+ALTER TABLE ONLY loan
+ADD CONSTRAINT loan_number_unique UNIQUE (loan_number);
+
 ALTER TABLE
 	ONLY loan
 ADD
 	CONSTRAINT fk_loan_customer FOREIGN KEY (id_customer) REFERENCES customer;
+
 
 ALTER TABLE
 	ONLY loan
@@ -431,24 +417,24 @@ ADD
 	CONSTRAINT fK_loan_sale FOREIGN KEY (id_sale) REFERENCES sale;
 
 ALTER TABLE
-	ONLY pending_fee
+	ONLY loan_pending_fee
 ADD
-	CONSTRAINT fk_pending_fee_loan FOREIGN KEY (loan_id) REFERENCES loan;
+	CONSTRAINT fk_loan_pending_fee_loan FOREIGN KEY (loan_id) REFERENCES loan;
 
 ALTER TABLE
 	ONLY loan_payment
 ADD
-	CONSTRAINT fk_loan_payment_pending_fee FOREIGN KEY (pending_fee_id) REFERENCES pending_fee;
+	CONSTRAINT fk_loan_payment_loan_pending_fee FOREIGN KEY (loan_pending_fee_id) REFERENCES loan_pending_fee;
 
 ALTER TABLE
 	ONLY loan_late_fee
 ADD
-	CONSTRAINT fk_loan_late_fee_pending_fee FOREIGN KEY (pending_fee_id) REFERENCES pending_fee;
+	CONSTRAINT fk_loan_late_fee_loan_pending_fee FOREIGN KEY (loan_pending_fee_id) REFERENCES loan_pending_fee;
 
 ALTER TABLE
 	ONLY loan_payment_upfront
 ADD
-	CONSTRAINT fk_loan_payment_upfront_loan FOREIGN KEY (pending_fee_id) REFERENCES pending_fee;
+	CONSTRAINT fk_loan_payment_upfront_loan_pending_fee FOREIGN KEY (loan_pending_fee_id) REFERENCES loan_pending_fee;
 
 --FIN REGISTRO DE COBROS
 --Alter CI
@@ -494,10 +480,6 @@ ADD
 	CONSTRAINT fk_monthly_category FOREIGN KEY (id_category_cost) REFERENCES cost_category(id_cost_category);
 
 --Alter EC
-ALTER TABLE
-	ONLY payment_employee
-ADD
-	CONSTRAINT fk_payment_employee FOREIGN KEY (id_employee) REFERENCES employee;
 
 
 --Alter OP
