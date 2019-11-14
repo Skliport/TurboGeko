@@ -1,12 +1,3 @@
---TABLAS QUE FALTARON
-CREATE TABLE employee(
-	id_employee serial PRIMARY KEY,
-	first_name varchar(25) NOT NULL,
-	last_name varchar(25) NOT NULL,
-	telephone varchar (50) NOT NULL,
-	dui varchar(20) NOT NULL,
-	email varchar(150) NOT NULL
-);
 
 -- OP Modulo
 CREATE TABLE IF NOT EXISTS order_production(
@@ -91,15 +82,6 @@ CREATE TABLE product_log(
 );
 
 --EC Modulo
-CREATE TABLE IF NOT EXISTS payment_employee(
-	id_payment_employee SERIAL PRIMARY KEY,
-	id_employee int not null,
-	payment_date date not null,
-	salary real not null,
-	isss real not null,
-	afp real not null,
-	notes varchar(60)
-);
 
 CREATE TABLE IF NOT EXISTS fixed_costs(
 	id_fixed_costs serial primary key,
@@ -494,10 +476,6 @@ ADD
 	CONSTRAINT fk_monthly_category FOREIGN KEY (id_category_cost) REFERENCES cost_category(id_cost_category);
 
 --Alter EC
-ALTER TABLE
-	ONLY payment_employee
-ADD
-	CONSTRAINT fk_payment_employee FOREIGN KEY (id_employee) REFERENCES employee;
 
 
 --Alter OP
