@@ -93,8 +93,13 @@ CREATE TABLE IF NOT EXISTS fixed_costs(
 
 CREATE TABLE IF NOT EXISTS finished_product(
 	id_finished_product SERIAL PRIMARY KEY,
-	units_int_stock int not null,
-	unit_price int not null
+	name_product VARCHAR(40),
+	units_in_stock INT,
+	unit_price REAL,
+	quantity INT,
+	discontinued INT,
+	manufacture_date DATE,
+	total REAL
 );
 
 -- MT Modulo
