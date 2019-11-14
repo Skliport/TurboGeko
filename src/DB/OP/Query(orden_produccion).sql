@@ -4,7 +4,6 @@ CREATE TABLE IF NOT EXISTS order_production(
     order_prod_date date NOT NULL,
     total REAL,
     order_state int,
-    --0-finalized, 1-paused, 2-pending, 3-canceled
     CHECK(total > 0),
     CHECK(
         order_state >= 0

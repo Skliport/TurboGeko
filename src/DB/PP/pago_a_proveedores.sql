@@ -14,9 +14,12 @@ CREATE TABLE purchase_payment_plan(
     late_fee_percentage_charge REAL NOT NULL
 );
 
-ALTER TABLE purchase_payment_plan
-ADD CONSTRAINT fk_purchase_payment_plan_purchase FOREIGN KEY (purchase_id) REFERENCES purchase (purchase_id),
-ADD CONSTRAINT fk_purchase_payment_status FOREIGN KEY (payment_plan_status_id) REFERENCES purchase_payment_plan_status (payment_plan_status_id);
+ALTER TABLE
+    purchase_payment_plan
+ADD
+    CONSTRAINT fk_purchase_payment_plan_purchase FOREIGN KEY (purchase_id) REFERENCES purchase (purchase_id),
+ADD
+    CONSTRAINT fk_purchase_payment_status FOREIGN KEY (payment_plan_status_id) REFERENCES purchase_payment_plan_status (payment_plan_status_id);
 
 CREATE TABLE purchase_payment_status(
     payment_status_id SERIAL PRIMARY KEY,
@@ -33,9 +36,12 @@ CREATE TABLE purchase_payment(
     payment_date DATE
 );
 
-ALTER TABLE purchase_payment
-ADD CONSTRAINT fk_purchase_payment_purchase FOREIGN KEY (purchase_id) REFERENCES purchase (purchase_id),
-ADD CONSTRAINT fk_purchase_payment_status FOREIGN KEY (payment_status_id) REFERENCES purchase_payment_status (payment_status_id);
+ALTER TABLE
+    purchase_payment
+ADD
+    CONSTRAINT fk_purchase_payment_purchase FOREIGN KEY (purchase_id) REFERENCES purchase (purchase_id),
+ADD
+    CONSTRAINT fk_purchase_payment_status FOREIGN KEY (payment_status_id) REFERENCES purchase_payment_status (payment_status_id);
 
 CREATE TABLE purchase_late_fee_payment_status(
     late_fee_payment_status_id SERIAL PRIMARY KEY,
@@ -51,9 +57,12 @@ CREATE TABLE purchase_late_fee_payment(
     payment_date DATE
 );
 
-ALTER TABLE purchase_late_fee_payment
-ADD CONSTRAINT fk_purchase_late_fee_payment_purchase_payment FOREIGN KEY (purchase_payment_id) REFERENCES purchase_payment (purchase_payment_id),
-ADD CONSTRAINT fk_purchase_late_fee_payment_status FOREIGN KEY (late_fee_payment_status_id) REFERENCES purchase_late_fee_payment_status (late_fee_payment_status_id);
+ALTER TABLE
+    purchase_late_fee_payment
+ADD
+    CONSTRAINT fk_purchase_late_fee_payment_purchase_payment FOREIGN KEY (purchase_payment_id) REFERENCES purchase_payment (purchase_payment_id),
+ADD
+    CONSTRAINT fk_purchase_late_fee_payment_status FOREIGN KEY (late_fee_payment_status_id) REFERENCES purchase_late_fee_payment_status (late_fee_payment_status_id);
 
 CREATE TABLE purchase_payment_upfront(
     purchase_payment_upfront_id SERIAL PRIMARY KEY,
@@ -62,6 +71,7 @@ CREATE TABLE purchase_payment_upfront(
     upfront_payment_date DATE NOT NULL
 );
 
-ALTER TABLE purchase_payment_upfront
-ADD CONSTRAINT fk_purchase_payment_upfront_purchase_payment FOREIGN KEY (purchase_payment_id) 
-REFERENCES purchase_payment (purchase_payment_id);
+ALTER TABLE
+    purchase_payment_upfront
+ADD
+    CONSTRAINT fk_purchase_payment_upfront_purchase_payment FOREIGN KEY (purchase_payment_id) REFERENCES purchase_payment (purchase_payment_id);
