@@ -55,3 +55,13 @@ ALTER TABLE
     monthly_cost
 ADD
     CONSTRAINT fk_monthly_category FOREIGN KEY (id_category_cost) REFERENCES cost_category(id_cost_category);
+
+--procedimientos almacenados
+--PROCEDIMIENTO: calcular el costo de producción de un producto
+
+CREATE OR REPLACE FUNCTION get_product_cost()
+RETURNS REAL AS $$
+BEGIN
+    
+END; $$
+LANGUAGE plpgsql;
