@@ -59,9 +59,22 @@ ADD
 --procedimientos almacenados
 --PROCEDIMIENTO: calcular el costo de producción de un producto
 
-CREATE OR REPLACE FUNCTION get_product_cost()
+CREATE OR REPLACE FUNCTION get_unit_cost_product(p_recipe_id INTEGER)
 RETURNS REAL AS $$
+DECLARE
+l_result REAL DEFAULT 0;
+l_rec_mat RECORD;
+l_cur_mat CURSOR(p_recipe_id INTEGER)
+    FOR SELECT total_cost FROM supply_for_recipe
+    WHERE recipe_id = p_recipe_id;
 BEGIN
-    
+    OPEN l_cur_mat(p_recipe_id);
+    LOOP
+        FETCH l_cur_mat INTO l_rec_mat;
+        EXIT WHEN NOT FOUND;
+        SET l_result = l_result + l_rec_mat.total_cost;
+    END LOOP;
+    CLOSE l_cur_mat;
+    RETURN l_result;
 END; $$
 LANGUAGE plpgsql;
