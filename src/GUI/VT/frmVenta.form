@@ -258,13 +258,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jScrollPane1" min="-2" pref="579" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnQuitarProducto" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnConsultarDisponibilidad" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -273,12 +267,8 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnQuitarProducto" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnConsultarDisponibilidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="280" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
@@ -289,17 +279,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
-            <Property name="text" type="java.lang.String" value="PRODUCTO:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnQuitarProducto">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Quitar Producto"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnConsultarDisponibilidad">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Disponibilidad"/>
+            <Property name="text" type="java.lang.String" value="Ordenes de Produccion"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -312,12 +292,14 @@
             <Component class="javax.swing.JTable" name="tablaDetalleOrden">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="0">
+                  <Table columnCount="7" rowCount="0">
+                    <Column editable="true" title="Numero de Orden" type="java.lang.Object"/>
                     <Column editable="true" title="Codigo" type="java.lang.Object"/>
                     <Column editable="true" title="Nombre de Producto" type="java.lang.Object"/>
                     <Column editable="true" title="Precio Unitario" type="java.lang.Object"/>
                     <Column editable="true" title="Cantidad" type="java.lang.Object"/>
                     <Column editable="true" title="Descuento" type="java.lang.Object"/>
+                    <Column editable="true" title="Monto" type="java.lang.Object"/>
                   </Table>
                 </Property>
               </Properties>
@@ -504,7 +486,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Anular Orden"/>
+        <Property name="text" type="java.lang.String" value="Anular Venta"/>
       </Properties>
     </Component>
   </SubComponents>

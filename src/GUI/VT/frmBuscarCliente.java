@@ -49,14 +49,14 @@ public class frmBuscarCliente extends javax.swing.JFrame {
 
         btnBuscarCliente.setText("Buscar");
 
-        cmbCriteriosBusquedaCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo Cliente", "Nombres Cliente", "Apellidos Cliente", "DUI", "NIT", "Telefono" }));
+        cmbCriteriosBusquedaCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo Cliente", "Nombres Cliente", "Apellidos Cliente" }));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código Cliente", "Apellidos Cliente", "Nombre Cliente", "DUI", "NIT", "Telefono", "NRC"
+                "Código Cliente", "Apellidos Cliente", "Nombre Cliente"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -144,6 +144,8 @@ public class frmBuscarCliente extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(frmBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

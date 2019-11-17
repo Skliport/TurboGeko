@@ -43,8 +43,6 @@ public class frmVenta extends javax.swing.JFrame {
         txtNombreCliente = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        btnQuitarProducto = new javax.swing.JButton();
-        btnConsultarDisponibilidad = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaDetalleOrden = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
@@ -163,18 +161,14 @@ public class frmVenta extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel7.setText("PRODUCTO:");
-
-        btnQuitarProducto.setText("Quitar Producto");
-
-        btnConsultarDisponibilidad.setText("Disponibilidad");
+        jLabel7.setText("Ordenes de Produccion");
 
         tablaDetalleOrden.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Codigo", "Nombre de Producto", "Precio Unitario", "Cantidad", "Descuento"
+                "Numero de Orden", "Codigo", "Nombre de Producto", "Precio Unitario", "Cantidad", "Descuento", "Monto"
             }
         ));
         jScrollPane1.setViewportView(tablaDetalleOrden);
@@ -187,22 +181,14 @@ public class frmVenta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnQuitarProducto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnConsultarDisponibilidad)))
+                    .addComponent(jLabel7))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(btnQuitarProducto)
-                    .addComponent(btnConsultarDisponibilidad))
+                .addGap(9, 9, 9)
+                .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5))
@@ -299,7 +285,7 @@ public class frmVenta extends javax.swing.JFrame {
 
         jButton2.setText("Buscar Orden");
 
-        jButton3.setText("Anular Orden");
+        jButton3.setText("Anular Venta");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -377,6 +363,7 @@ public class frmVenta extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(frmVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -388,10 +375,8 @@ public class frmVenta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarCliente;
-    private javax.swing.JButton btnConsultarDisponibilidad;
     private javax.swing.JButton btnGuardarVta;
     private javax.swing.JButton btnNuevoCliente;
-    private javax.swing.JButton btnQuitarProducto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
