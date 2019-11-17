@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS fixed_costs(
 CREATE TABLE IF NOT EXISTS finished_product(
 	id_finished_product SERIAL PRIMARY KEY,
 	name_product VARCHAR(40),
-	units_in_stock INT,
+	units_in_stock REAL,
 	unit_price REAL,
 	quantity INT,
 	discontinued INT,
