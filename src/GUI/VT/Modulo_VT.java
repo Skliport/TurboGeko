@@ -16,6 +16,7 @@ public class Modulo_VT {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        DBContext db = new DBContext();
     }
     
 }

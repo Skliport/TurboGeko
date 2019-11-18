@@ -5,17 +5,21 @@
  */
 package GUI.VT;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author chris
  */
 public class frmVenta extends javax.swing.JFrame {
-
+DBContext db;
+CustomerVT cliente;
     /**
      * Creates new form frmVenta
      */
     public frmVenta() {
         initComponents();
+        db = new DBContext();
     }
 
     /**
@@ -35,7 +39,6 @@ public class frmVenta extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        btnNuevoCliente = new javax.swing.JButton();
         btnBuscarCliente = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtFechaEnvio = new javax.swing.JTextField();
@@ -66,6 +69,13 @@ public class frmVenta extends javax.swing.JFrame {
         setTitle("Registrar Venta");
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -108,9 +118,12 @@ public class frmVenta extends javax.swing.JFrame {
 
         jLabel6.setText("Direccion:");
 
-        btnNuevoCliente.setText("Nuevo");
-
         btnBuscarCliente.setText("Buscar");
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Fecha de Envio:");
 
@@ -126,9 +139,7 @@ public class frmVenta extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscarCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnNuevoCliente))
+                        .addComponent(btnBuscarCliente))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -146,7 +157,6 @@ public class frmVenta extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(btnBuscarCliente)
-                    .addComponent(btnNuevoCliente)
                     .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -337,6 +347,21 @@ public class frmVenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        // TODO add your handling code here:
+        frmBuscarCliente frmCliente = new frmBuscarCliente();
+        frmCliente.setVisible(true);
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        if (frmBuscarCliente.cliente!=null) {
+            this.cliente=frmBuscarCliente.cliente;
+            this.txtNombreCliente.setText(cliente.Nombre);
+            this.txtDireccionCliente.setText(cliente.Direccion);
+        }
+    }//GEN-LAST:event_formWindowGainedFocus
+
     /**
      * @param args the command line arguments
      */
@@ -376,7 +401,6 @@ public class frmVenta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnGuardarVta;
-    private javax.swing.JButton btnNuevoCliente;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

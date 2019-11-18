@@ -5,17 +5,28 @@
  */
 package GUI.VT;
 
+import java.util.ArrayList;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author chris
  */
 public class frmBusquedaOrden extends javax.swing.JFrame {
 
+    DBContext db;
+    ArrayList<OrderVT> orders;
+    DefaultTableModel model;
+
     /**
      * Creates new form frmBusquedaOrden
      */
     public frmBusquedaOrden() {
         initComponents();
+        db = new DBContext();
+        orders=new ArrayList<>();
+        model = (DefaultTableModel) this.jTable1.getModel();
     }
 
     /**
@@ -50,6 +61,11 @@ public class frmBusquedaOrden extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Número de Orden", "Fecha de Orden" }));
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -61,9 +77,8 @@ public class frmBusquedaOrden extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtBusquedaOrdenPor)
-                        .addComponent(jComboBox1, 0, 142, Short.MAX_VALUE)))
+                    .addComponent(txtBusquedaOrdenPor)
+                    .addComponent(jComboBox1, 0, 142, Short.MAX_VALUE))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -109,7 +124,7 @@ public class frmBusquedaOrden extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Número de Factura", "Apellidos Cliente", "Nombres Cliente", "Fecha Venta", "Fecha Envio", "Sub Total", "IVA", "Total"
+                "Número de Factura", "Apellidos Cliente", "Nombres Cliente", "Fecha Venta", "Sub Total", "IVA", "Total"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -159,6 +174,49 @@ public class frmBusquedaOrden extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        String query;
+        try {
+            Statement stm = db.Conn.createStatement();
+            ResultSet rs;
+            if (this.jComboBox1.getSelectedIndex() == 0) {
+                query = "Select * from getOrderById(" + this.txtBusquedaOrdenPor.getText() + ");";
+            } else {
+                query = "Select * from getOrderByDate(" + this.txtBusquedaOrdenPor.getText() + ");";
+            }
+            rs = stm.executeQuery(query);
+            OrderVT temp;
+            Object[] data;
+            while (rs.next()) {
+                data= new Object[7];
+                temp=new OrderVT();
+                temp.Nombre=rs.getString("Nombre");
+                temp.Apellidos=rs.getString("Apellidos");
+                temp.Id=rs.getInt("Id");
+                temp.Cantidad=rs.getInt("Cantidad");
+                temp.Estado=rs.getInt("Estado");
+                temp.Precio_Unitario=rs.getDouble("Precio_Unitario");
+                temp.Total=rs.getDouble("Total");
+                temp.fecha=rs.getDate("Fecha");
+                orders.add(temp);
+                System.out.println(temp.Nombre);
+                data[0]=temp.Id;
+                data[1]=temp.Apellidos;
+                data[2]=temp.Nombre;
+                data[3]=temp.fecha;
+                data[4]=temp.Total;
+                data[5]=temp.Total*0.11;
+                data[6]=temp.Total+(temp.Total*0.11);
+                model.addRow(data);
+            }
+            this.jTable1.setModel(model);
+        } catch (Exception e) {
+
+        }
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,17 +5,30 @@
  */
 package GUI.VT;
 
+import java.sql.*;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author chris
  */
 public class frmBuscarCliente extends javax.swing.JFrame {
 
+    DBContext db;
+    ArrayList<CustomerVT> customers;
+    CustomerVT temp = new CustomerVT();
+    DefaultTableModel model;
+    static CustomerVT cliente;
+
     /**
      * Creates new form frmAgregarProducto
      */
     public frmBuscarCliente() {
         initComponents();
+        db = new DBContext();
+        customers = new ArrayList<>();
+        model = (DefaultTableModel) this.jTable1.getModel();
     }
 
     /**
@@ -29,7 +42,6 @@ public class frmBuscarCliente extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnAgregarProducto = new javax.swing.JButton();
         txtNombreBuscar = new javax.swing.JTextField();
         btnBuscarCliente = new javax.swing.JButton();
         cmbCriteriosBusquedaCliente = new javax.swing.JComboBox<>();
@@ -44,12 +56,24 @@ public class frmBuscarCliente extends javax.swing.JFrame {
 
         jLabel1.setText("Buscar Por:");
 
-        btnAgregarProducto.setText("Agregar Cliente");
-        btnAgregarProducto.setToolTipText("");
-
         btnBuscarCliente.setText("Buscar");
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteActionPerformed(evt);
+            }
+        });
 
         cmbCriteriosBusquedaCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo Cliente", "Nombres Cliente", "Apellidos Cliente" }));
+        cmbCriteriosBusquedaCliente.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbCriteriosBusquedaClienteItemStateChanged(evt);
+            }
+        });
+        cmbCriteriosBusquedaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCriteriosBusquedaClienteActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -59,6 +83,11 @@ public class frmBuscarCliente extends javax.swing.JFrame {
                 "Código Cliente", "Apellidos Cliente", "Nombre Cliente"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -73,14 +102,11 @@ public class frmBuscarCliente extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cmbCriteriosBusquedaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombreBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(cmbCriteriosBusquedaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNombreBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -92,9 +118,7 @@ public class frmBuscarCliente extends javax.swing.JFrame {
                     .addComponent(cmbCriteriosBusquedaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNombreBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarCliente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAgregarProducto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(44, 44, 44)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -118,6 +142,107 @@ public class frmBuscarCliente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmbCriteriosBusquedaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCriteriosBusquedaClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbCriteriosBusquedaClienteActionPerformed
+
+    private void cmbCriteriosBusquedaClienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCriteriosBusquedaClienteItemStateChanged
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_cmbCriteriosBusquedaClienteItemStateChanged
+
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        // TODO add your handling code here:
+        try {
+            customers = new ArrayList<>();
+            String query;
+            Statement stm = db.Conn.createStatement();
+            ResultSet rs;
+            if (this.cmbCriteriosBusquedaCliente.getSelectedIndex() == 0) {
+                query = "select * from getCustomersById(" + this.txtNombreBuscar.getText() + ")";
+                rs = stm.executeQuery(query);
+                while (rs.next()) {
+                    temp.Apellido = rs.getString("Apellido");
+                    temp.Correo = rs.getString("Correo");
+                    temp.DUI = rs.getString("DUI");
+                    temp.Direccion = rs.getString("Direccion");
+                    temp.Movil = rs.getString("Movil");
+                    temp.NIT = rs.getString("NIT");
+                    temp.NRC = rs.getString("NRC");
+                    temp.Nombre = rs.getString("Nombre");
+                    temp.Telefono = rs.getString("Telefono");
+                    temp.id = rs.getInt("id");
+                }
+            } else if (this.cmbCriteriosBusquedaCliente.getSelectedIndex() == 1) {
+                query = "select * from getcustomersbyfirstname('" + this.txtNombreBuscar.getText() + "');";
+                rs = stm.executeQuery(query);
+                while (rs.next()) {
+                    temp = new CustomerVT();
+                    temp.Apellido = rs.getString("Apellido");
+                    temp.Correo = rs.getString("Correo");
+                    temp.DUI = rs.getString("DUI");
+                    temp.Direccion = rs.getString("Direccion");
+                    temp.Movil = rs.getString("Movil");
+                    temp.NIT = rs.getString("NIT");
+                    temp.NRC = rs.getString("NRC");
+                    temp.Nombre = rs.getString("Nombre");
+                    temp.Telefono = rs.getString("Telefono");
+                    temp.id = rs.getInt("id");
+                    customers.add(temp);
+                }
+            } else {
+                query = "select * from getcustomersbylastname('" + this.txtNombreBuscar.getText() + "');";
+                rs = stm.executeQuery(query);
+                while (rs.next()) {
+                    temp = new CustomerVT();
+                    temp.Apellido = rs.getString("Apellido");
+                    temp.Correo = rs.getString("Correo");
+                    temp.DUI = rs.getString("DUI");
+                    temp.Direccion = rs.getString("Direccion");
+                    temp.Movil = rs.getString("Movil");
+                    temp.NIT = rs.getString("NIT");
+                    temp.NRC = rs.getString("NRC");
+                    temp.Nombre = rs.getString("Nombre");
+                    temp.Telefono = rs.getString("Telefono");
+                    temp.id = rs.getInt("id");
+                    customers.add(temp);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (customers.size() == 0) {
+                Object[] data = new Object[3];
+                data[0] = temp.id;
+                data[1] = temp.Apellido;
+                data[2] = temp.Nombre;
+                model.setRowCount(0);
+                model.addRow(data);
+            } else {
+                Object[] data = new Object[3];
+                model.setRowCount(0);
+                for (int i = 0; i < customers.size(); i++) {
+                    data[0] = customers.get(i).id;
+                    data[1] = customers.get(i).Apellido;
+                    data[2] = customers.get(i).Nombre;
+                    model.addRow(data);
+                }
+            }
+            this.jTable1.setModel(model);
+        }
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        if (customers.size()==0) {
+            frmBuscarCliente.cliente=temp;
+        }else{
+            frmBuscarCliente.cliente=customers.get(this.jTable1.getSelectedRow());
+        }
+        this.dispose();
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -158,7 +283,6 @@ public class frmBuscarCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JComboBox<String> cmbCriteriosBusquedaCliente;
     private javax.swing.JLabel jLabel1;
