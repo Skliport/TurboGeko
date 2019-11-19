@@ -11,7 +11,7 @@ import java.sql.*;
  */
 public class DBContext {
     Connection Conn;
-    String url ="jdbc:postgresql://localhost:5432/TurboGecko";
+    String url ="jdbc:postgresql://localhost:5433/TurboGeko";
 
     public DBContext() {
         try{
