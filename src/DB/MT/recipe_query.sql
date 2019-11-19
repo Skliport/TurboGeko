@@ -11,12 +11,13 @@ CREATE TABLE supply_for_recipe(
     unit_cost REAL,
     total_cost REAL,
     id_measurement int,
-    id_recipe int id_material int
+    id_recipe int,
+    id_material int
 );
 
 CREATE TABLE measurement_description(
     id_measurement SERIAL PRIMARY KEY,
-    description varchar(60)
+    descrip varchar(60)
 );
 
 CREATE TABLE monthly_cost (
@@ -28,6 +29,29 @@ CREATE TABLE monthly_cost (
 CREATE TABLE cost_category(
     id_cost_category INT PRIMARY KEY,
     category_description VARCHAR(200)
+);
+
+CREATE TABLE IF NOT EXISTS finished_product(
+	id_finished_product SERIAL PRIMARY KEY,
+	name_product VARCHAR(40),
+	units_in_stock REAL,
+	unit_price REAL,
+	quantity INT,
+	discontinued INT,
+	manufacture_date DATE,
+	total REAL
+);
+
+CREATE TABLE materials(
+	material_id SERIAL PRIMARY KEY,
+	supplier_id INT NOT NULL,
+	material_name VARCHAR(25) NOT NULL,
+	units_in_stock INT NOT NULL,
+	material_measure VARCHAR(25) NOT NULL,
+	unit_price REAL NOT NULL,
+	number_lot INT,
+	expiration_date DATE,
+	discontinued INT NOT NULL
 );
 
 ALTER TABLE
@@ -43,20 +67,22 @@ ADD
 ALTER TABLE
     supply_for_recipe
 ADD
-    CONSTRAINT fk_supply_material FOREIGN KEY (id_material) REFERENCES material (id_material);
+    CONSTRAINT fk_supply_material FOREIGN KEY (id_material) REFERENCES materials (material_id);
 
 ALTER TABLE
     recipe
 ADD
-    CONSTRAINT fk_recipe_product FOREIGN KEY(id_product) REFERENCES product (id_product);
+    CONSTRAINT fk_recipe_product FOREIGN KEY(id_product) REFERENCES finished_product (id_finished_product);
 
 ALTER TABLE
     monthly_cost
 ADD
     CONSTRAINT fk_monthly_category FOREIGN KEY (id_category_cost) REFERENCES cost_category(id_cost_category);
 
+--INSERCIÓN DE DISCRIMINANTE measurement
+INSERT INTO meauserement_description (id_measurement, descrip) VALUES (),(),(),();
 --procedimientos almacenados
---PROCEDIMIENTO: calcular el costo de producción de un producto
+--PROCEDIMIENTO: insertar una nueva receta
 
 CREATE OR REPLACE FUNCTION get_unit_cost_product(p_recipe_id INTEGER)
 RETURNS REAL AS $$

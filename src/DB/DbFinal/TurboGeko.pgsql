@@ -78,7 +78,8 @@ CREATE TABLE product_log(
 	id_product_log serial NOT NULL,
 	id_sale int NOT NULL,
 	order_production_id int NOT NULL,
-	update_time date
+	update_time date,
+	status int not null
 );
 
 --EC Modulo
@@ -93,8 +94,13 @@ CREATE TABLE IF NOT EXISTS fixed_costs(
 
 CREATE TABLE IF NOT EXISTS finished_product(
 	id_finished_product SERIAL PRIMARY KEY,
-	units_int_stock int not null,
-	unit_price int not null
+	name_product VARCHAR(40),
+	units_in_stock REAL,
+	unit_price REAL,
+	quantity INT,
+	discontinued INT,
+	manufacture_date DATE,
+	total REAL
 );
 
 -- MT Modulo
@@ -221,7 +227,8 @@ CREATE TABLE loan_payment(
 	loan_payment_id SERIAL,
 	payment_date DATE NOT NULL,
 	paid_amount REAL NOT NULL,
-	loan_pending_fee_id INT NOT NULL
+	loan_pending_fee_id INT NOT NULL,
+	num_payment_fee varchar(10) unique not null
 );
 
 CREATE TABLE loan_late_fee(
@@ -230,14 +237,16 @@ CREATE TABLE loan_late_fee(
 	loan_late_fee_state INT NOT NULL,
 	late_fee_payment_date DATE,
 	paid_amount REAL,
-	loan_pending_fee_id INT NOT NULL
+	loan_pending_fee_id INT NOT NULL,
+	late_fee_num varchar(10) unique not null
 );
 
 CREATE TABLE loan_payment_upfront(
 	loan_payment_upfront_id SERIAL,
 	paid_amount REAL NOT NULL,
 	payment_date DATE NOT NULL,
-	loan_pending_fee_id INT NOT NULL
+	loan_pending_fee_id INT NOT NULL,
+	num_payment_upfront varchar(10) unique not null
 );
 
 --PP Modulo
