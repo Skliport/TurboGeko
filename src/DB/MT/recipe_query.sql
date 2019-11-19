@@ -78,3 +78,24 @@ BEGIN
     RETURN l_result;
 END; $$
 LANGUAGE plpgsql;
+
+--INSERCIÓN DE DISCRIMINANTE measurement
+INSERT INTO meauserement_description (id_measurement, descrip) VALUES (),(),(),();
+--procedimientos almacenados
+--PROCEDIMIENTO: insertar una nueva receta
+
+CREATE OR REPLACE FUNCTION set_new_recipe(punit_cost REAL, psale_price REAL, pid_product INT)
+RETURNS REAL AS $$
+BEGIN
+
+END; $$
+LANGUAGE plpgsql;
+
+--procedimiento: insertar insumos de receta
+
+CREATE OR REPLACE FUNCTION set_new_supply_for_recipe(punit_cost REAL, psale_price REAL, pid_product INT)
+RETURNS REAL AS $$
+BEGIN
+
+END; $$
+LANGUAGE plpgsql;
