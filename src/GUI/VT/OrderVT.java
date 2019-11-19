@@ -13,8 +13,8 @@ import java.sql.Date;
  */
 public class OrderVT {
 //    Id integer,Apellidos character varying,Nombre character varying
-    String Apellidos,Nombre;
+    String Apellidos,Nombre,Direccion;
     Date fecha;
     Double Total, Precio_Unitario;
-    int Estado, Cantidad,Id;
+    int Estado, Cantidad,Id,cId;
 }
