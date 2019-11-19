@@ -1,10 +1,10 @@
-package Formularios;
+package GUI.PP;
 
-import Entidades.AvancePago;
-import Entidades.Cuota;
-import Entidades.DBAdmin;
-import Entidades.MoraCuota;
-import Entidades.PlanDePago;
+import Entidades.PP.AvancePago;
+import Entidades.PP.Cuota;
+import Entidades.PP.DBAdmin;
+import Entidades.PP.MoraCuota;
+import Entidades.PP.PlanDePago;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.ResultSet;

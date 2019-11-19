@@ -1,5 +1,5 @@
 
-package Entidades;
+package Entidades.PP;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
