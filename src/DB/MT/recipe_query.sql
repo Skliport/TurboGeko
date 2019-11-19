@@ -1,6 +1,5 @@
 CREATE TABLE recipe (
     id_recipe SERIAL PRIMARY KEY,
-    cod_recipe varchar(20),
     unit_cost REAL,
     sale_price REAL,
     id_product INT
@@ -62,7 +61,7 @@ ADD
 CREATE OR REPLACE FUNCTION get_unit_cost_product(p_recipe_id INTEGER)
 RETURNS REAL AS $$
 DECLARE
-l_result REAL DEFAULT 0;
+l_result REAL := 0;
 l_rec_mat RECORD;
 l_cur_mat CURSOR(p_recipe_id INTEGER)
     FOR SELECT total_cost FROM supply_for_recipe
@@ -80,22 +79,41 @@ END; $$
 LANGUAGE plpgsql;
 
 --INSERCIÓN DE DISCRIMINANTE measurement
-INSERT INTO meauserement_description (id_measurement, descrip) VALUES (),(),(),();
+INSERT INTO meauserement_description (id_measurement, descrip) 
+VALUES (1,'Kilogramo'),(2,'Miligramo'),(3,'Metro'),(4,'Centímetro'),
+        (5,'Milímetro'),(6,'Litro'), (7,'Mililitro'),(8,'Onza'), (9,'Gramo'),
+        (10,'Libra');
 --procedimientos almacenados
 --PROCEDIMIENTO: insertar una nueva receta
 
-CREATE OR REPLACE FUNCTION set_new_recipe(punit_cost REAL, psale_price REAL, pid_product INT)
-RETURNS REAL AS $$
+CREATE OR REPLACE FUNCTION set_new_recipe(punit_cost REAL, pid_product INT)
+RETURNS INT AS $$
+DECLARE
+l_id INTEGER:=0;
 BEGIN
-
+    INSERT INTO recipe (unit_cost, sale_price, id_product) VALUES (punit_cost, psale_price, pid_product);
+    SELECT id_recipe INTO l_id FROM recipe ORDER BY id_recipe DESC;
+    RETURN l_id AS id_recipe;
 END; $$
 LANGUAGE plpgsql;
 
 --procedimiento: insertar insumos de receta
 
-CREATE OR REPLACE FUNCTION set_new_supply_for_recipe(punit_cost REAL, psale_price REAL, pid_product INT)
-RETURNS REAL AS $$
+CREATE OR REPLACE FUNCTION set_new_supply_for_recipe(pid_recipe INT, pid_material INT, pid_measurement INT, punit_cost REAL)
+RETURNS VOID AS $$
 BEGIN
-
+    INSERT INTO supply_for_recipe(unit_cost,total_cost,id_measurement, id_recipe, id_material) 
+    VALUES (punit_cost,pid_measurement, pid_recipe, pid_material);
 END; $$
 LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION insertProductForRecipe(pNombre VARCHAR(100))
+RETURNS INT AS $$
+DECLARE
+l_id INTEGER :=0;
+BEGIN
+    INSERT INTO finished_product (name_product) VALUES (pNombre);
+    SELECT id_finished_product INTO l_id FROM finished_product ORDER BY id_finished_product DESC LIMIT 1;
+    RETURN l_id AS id_finished_product;
+END;$$
+LANGUAGE PLPGSQL;

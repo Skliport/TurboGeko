@@ -5,10 +5,7 @@
  */
 package GUI.MT;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,11 +32,7 @@ public class frmProductosinreceta extends javax.swing.JFrame {
         lblTituloPagosProveedores1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         nombre = new javax.swing.JTextField();
-        precio = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        cant = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -63,31 +56,22 @@ public class frmProductosinreceta extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, -1));
 
         jLabel2.setText("Nombre del producto:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
-
-        jLabel3.setText("Precio unitario:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
-        getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 170, -1));
-        getContentPane().add(precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 170, -1));
-
-        jLabel4.setText("Cant:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
-        getContentPane().add(cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 170, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, 20));
+        getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 300, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Recipe r = new Recipe();
         try {
-            ConexionBD conn = new ConexionBD();
-            String rquery = "insert into  finished_product (unit_price,units_int_stock)"
-                    + " values (?, ?)";
-            PreparedStatement rpst = conn.getConnection().prepareStatement(rquery);
-            rpst.setInt(1, Integer.parseInt(precio.getText()));
-            rpst.setInt(2, Integer.parseInt(cant.getText()));
-            rpst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(frmProductosinreceta.class.getName()).log(Level.SEVERE, null, ex);
+            frmProducto f = new frmProducto();
+            f.idProducto = r.agregarProducto(nombre.getText().trim().toUpperCase());
+            JOptionPane.showMessageDialog(null, "Producto agergado!\nAhora procederás a ingresar los materiales necesarios para la fabricación de tu nuevo product: " + nombre.getText().trim().toUpperCase());
+            f.setVisible(true);
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Algo falló");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -127,13 +111,9 @@ public class frmProductosinreceta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField cant;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lblTituloPagosProveedores1;
     private javax.swing.JTextField nombre;
-    private javax.swing.JTextField precio;
     // End of variables declaration//GEN-END:variables
 }

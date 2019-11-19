@@ -3,6 +3,7 @@ package GUI.MT;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,6 +18,7 @@ public class frmProducto extends javax.swing.JFrame {
     ArrayList<Materiales> Lmar = new ArrayList<Materiales>();
     DefaultTableModel modelo1;
     DefaultTableModel modelo2;
+    public int idProducto;
 
     /**
      * Creates new form frmProducto
@@ -27,6 +29,7 @@ public class frmProducto extends javax.swing.JFrame {
         modelo2 = (DefaultTableModel) this.jTable2.getModel();
         Lma = Ma.CargarMateriales();
         Cargar_Listado_Materiales();
+        fillMeasurement();
     }
 
     /**
@@ -58,7 +61,7 @@ public class frmProducto extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbMeasurement = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(860, 539));
@@ -164,7 +167,7 @@ public class frmProducto extends javax.swing.JFrame {
         jLabel10.setText("Costo Unitario:");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 20));
 
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 150, -1));
+        getContentPane().add(cmbMeasurement, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 150, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -181,6 +184,7 @@ public class frmProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Lma.get(indice).measurement = cmbMeasurement.getSelectedIndex() + 1;
         Lmar.add(Lma.get(indice));
         modelo2.setRowCount(0);
         double total = 0;
@@ -195,7 +199,14 @@ public class frmProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       //FinalizarReceta();
+        try {
+            Recipe r = new Recipe();
+            r.insertRecipe(Integer.parseInt(txtcosto.getText()), idProducto, Lmar);
+            JOptionPane.showMessageDialog(null, "Agregado!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Algo falló");
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -263,11 +274,21 @@ public class frmProducto extends javax.swing.JFrame {
 
     }
 
+    private void fillMeasurement() {
+        cmbMeasurement.removeAllItems();
+        Recipe r = new Recipe();
+        ArrayList<String> data = new ArrayList<>();
+        data = r.measurementList();
+        for (int i = 0; i < data.size(); i++) {
+            cmbMeasurement.addItem(data.get(i));
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmbMeasurement;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;

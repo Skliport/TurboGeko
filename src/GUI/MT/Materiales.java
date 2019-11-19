@@ -23,6 +23,7 @@ public class Materiales {
     public int number_lot;
     public Date expiration_date;
     public int discontinued;
+    public int measurement;
 
     public int getMaterial_id() {
         return material_id;
