@@ -476,21 +476,21 @@ public class frmAbono extends javax.swing.JFrame {
     private void btnAgregarAbonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAbonoActionPerformed
         // TODO add your handling code here:
 
-        if ("0.0".equals(this.txtMora.getText())) {
-
-        } else {
-            int confirmado = JOptionPane.showConfirmDialog(
-                    rootPane,
-                    "¿Agregar Pago?");
-            if (JOptionPane.OK_OPTION == confirmado) {
-                try {
+        int confirmado = JOptionPane.showConfirmDialog(
+                rootPane,
+                "¿Agregar Pago?");
+        if (JOptionPane.OK_OPTION == confirmado) {
+            try {
+                if ("0.00".equals(this.txtMora.getText())) {
+                    add_payment();
+                } else {
                     add_payment();
                     add_payment_late_fee();
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(frmAbono.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(frmAbono.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
 
 
