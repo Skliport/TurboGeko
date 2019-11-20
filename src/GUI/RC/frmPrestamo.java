@@ -76,6 +76,7 @@ public class frmPrestamo extends javax.swing.JFrame {
             txtVenta.setText(num_invoice);
             txtCliente.setText("" + customer_id);
             monto_total();
+            oConsPres.agregar_moras();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(frmPrestamo.class.getName()).log(Level.SEVERE, null, ex);
         }
