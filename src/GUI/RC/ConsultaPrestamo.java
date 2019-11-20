@@ -22,6 +22,19 @@ public class ConsultaPrestamo extends Conexion {
     ResultSet results = null;
     Connection con = null;
     Prestamo oPres;
+    
+     public void agregar_moras() throws SQLException {
+        try {
+            con = getConnection();
+            String SQL = "Select add_late_fee_function()";
+            PreparedStatement pstmt = con.prepareStatement(SQL);
+            results = pstmt.executeQuery();
+           
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ConsultaPrestamo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
     public ArrayList<Prestamo> todosPrestamos() throws ClassNotFoundException {
         con = getConnection();
