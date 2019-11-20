@@ -79,6 +79,8 @@ public class frmPrestamo extends javax.swing.JFrame {
             oConsPres.agregar_moras();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(frmPrestamo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(frmPrestamo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
