@@ -1,22 +1,4 @@
---Venta
---1
---saber todos los clientes
---2
---saber todas las ordenes por cliente que esten completadas pero que no se hayan entregado
---3
---despechar la venta o anular la venta
---4
---Busquedad de Ordenes
---5
---solo mostrar las ordenes filtradas
---6
---Bitacora de Productos
---7
---solo mostrar los productos 
---8
---cada vez que se entrega una venta o se anula se agrega un registro
 
---1
 CREATE OR REPLACE FUNCTION getCustomersByLastName(plast_name varchar) 
 RETURNS TABLE(id integer, Nombre character varying, Apellido character varying, Direccion character varying, Movil character varying, Telefono character varying, DUI character varying, NIT character varying, NRC character varying, Correo character varying)
  AS $$
@@ -159,44 +141,3 @@ CREATE OR REPLACE PROCEDURE UpdateOrder(pid_order integer,pstatus integer)
          update order_production set order_state = pstatus where order_production.order_production_id=pid_order;
     END;
 $$ LANGUAGE plpgsql;
-
-insert into finished_product(name_product,units_in_stock,unit_price,quantity,discontinued,manufacture_date,total) 
-values('Cubo',15,12,15,0,(select CURRENT_DATE),30);
-
-insert into customer(first_name,last_name,address,mobile,telephone,dui,nit,nrc,email)
-values('Bryan','Palma','Mi casa','1234678','87654321','012345678-9','0210-123456-789-1','123456789123456','micorreo@algo.com');
-
-insert into customer(first_name,last_name,address,mobile,telephone,dui,nit,nrc,email)
-values('Mauricio','Flores','Mi casa #2','1234678','87654321','987654321-0','0210-123456-789-1','123456789123456','micorreo2@algo.com');
-
-insert into recipe(unit_cost,sale_price,id_product)
-values(12,15,1);
---orden no finalizada
-insert into order_production(customer_id,order_prod_date,total,order_state)
-values(1,(SELECT CURRENT_DATE),150,0);
-
-insert into order_production_detail(id_recipe,quantity,unit_price,order_production_id)
-values(1,15,15,1);
---fin orden no finalizada
---orden finalizada
-insert into order_production(customer_id,order_prod_date,total,order_state)
-values(1,(SELECT CURRENT_DATE),150,1);
-
-insert into order_production_detail(id_recipe,quantity,unit_price,order_production_id)
-values(1,15,15,2);
---fin orden finalizada
-
-select * from getProducts();
-select * from getcustomersbylastname('Pal');
-select * from getcustomersbyfirstname('Mauricio');
-select * from getOrders(1);
-select * from getAllOrders(1);
-select * from getOrderById(1);
-select * from getorderbydate('20191118');
-
-call insertintosale('2',0,'19-11-2019','25-11-2019',0,160,9.5,169.5,1);
-select * from product_log
-
-select * from sale
-
-select now();
