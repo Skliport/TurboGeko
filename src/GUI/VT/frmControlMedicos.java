@@ -9,14 +9,6 @@ package GUI.VT;
  *
  * @author chris
  */
-public class Modulo_VT {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        DBContext db = new DBContext();
-    }
+class frmControlMedicos {
     
 }
