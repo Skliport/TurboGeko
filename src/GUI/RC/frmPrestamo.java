@@ -48,7 +48,7 @@ public class frmPrestamo extends javax.swing.JFrame {
     DecimalFormat df;
     frmVenta frmVenta;
 
-    public frmPrestamo() throws Object {
+    public frmPrestamo() {
         initComponents();
         popupTabla();
 
