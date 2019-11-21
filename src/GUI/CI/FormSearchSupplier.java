@@ -5,17 +5,33 @@
  */
 package GUI.CI;
 
+import DB.CI.SupplierImpleCrud;
+import Clases.Supplier;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author chris
  */
-public class frmBucarProveedor extends javax.swing.JFrame {
+public class FormSearchSupplier extends javax.swing.JFrame {
 
     /**
      * Creates new form frmAgregarCliente
      */
-    public frmBucarProveedor() {
+    private DefaultTableModel modelo;
+    private ArrayList<Supplier>alsupplier;
+    private SupplierImpleCrud supplierImpleCrud;
+    private Supplier supplier;
+    private FormPurchase formPurchase;
+    public FormSearchSupplier(FormPurchase formPurchase) {
         initComponents();
+        this.alsupplier = new ArrayList<>();
+        this.modelo = (DefaultTableModel)this.tbDistribucion.getModel();
+        supplierImpleCrud = new SupplierImpleCrud();
+        this.supplier = new Supplier();
+        this.formPurchase = formPurchase;
         this.setLocationRelativeTo(null);
     }
 
@@ -34,36 +50,37 @@ public class frmBucarProveedor extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
-        txtEmail19 = new javax.swing.JTextField();
+        txtNombreProveedor = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        txtEmail10 = new javax.swing.JTextField();
+        txtTituloContacto = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        txtEmail12 = new javax.swing.JTextField();
+        txtCiudad = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        txtEmail14 = new javax.swing.JTextField();
+        txtCodigoPostal = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        txtEmail16 = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        txtEmail18 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        txtEmail9 = new javax.swing.JTextField();
+        txtNombreContacto = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        txtEmail11 = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        txtEmail13 = new javax.swing.JTextField();
+        txtRegion = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        txtEmail15 = new javax.swing.JTextField();
+        txtPais = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        txtEmail17 = new javax.swing.JTextField();
+        txtFax = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbDistribucion = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Proveedor");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -103,137 +120,87 @@ public class frmBucarProveedor extends javax.swing.JFrame {
         jLabel22.setText("Nombre Proveedor:");
         jPanel4.add(jLabel22);
 
-        txtEmail19.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtEmail19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmail19ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(txtEmail19);
+        txtNombreProveedor.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jPanel4.add(txtNombreProveedor);
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel13.setText("Título de contacto:");
         jPanel4.add(jLabel13);
 
-        txtEmail10.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtEmail10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmail10ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(txtEmail10);
+        txtTituloContacto.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jPanel4.add(txtTituloContacto);
 
         jLabel15.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel15.setText("Ciudad:");
         jPanel4.add(jLabel15);
 
-        txtEmail12.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtEmail12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmail12ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(txtEmail12);
+        txtCiudad.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jPanel4.add(txtCiudad);
 
         jLabel17.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel17.setText("Código postal:");
         jPanel4.add(jLabel17);
 
-        txtEmail14.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtEmail14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmail14ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(txtEmail14);
+        txtCodigoPostal.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jPanel4.add(txtCodigoPostal);
 
         jLabel19.setBackground(new java.awt.Color(255, 255, 255));
         jLabel19.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel19.setText("Teléfono:");
         jPanel4.add(jLabel19);
 
-        txtEmail16.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtEmail16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmail16ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(txtEmail16);
+        txtTelefono.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jPanel4.add(txtTelefono);
 
         jLabel21.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel21.setText("Email:");
         jPanel4.add(jLabel21);
 
-        txtEmail18.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtEmail18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmail18ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(txtEmail18);
+        txtEmail.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jPanel4.add(txtEmail);
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel12.setText("Nombre de contacto:");
         jPanel4.add(jLabel12);
 
-        txtEmail9.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtEmail9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmail9ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(txtEmail9);
+        txtNombreContacto.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jPanel4.add(txtNombreContacto);
 
         jLabel14.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel14.setText("Direcciòn:");
         jPanel4.add(jLabel14);
 
-        txtEmail11.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtEmail11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmail11ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(txtEmail11);
+        txtDireccion.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jPanel4.add(txtDireccion);
 
         jLabel16.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel16.setText("Regiòn:");
         jPanel4.add(jLabel16);
 
-        txtEmail13.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtEmail13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmail13ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(txtEmail13);
+        txtRegion.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jPanel4.add(txtRegion);
 
         jLabel18.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel18.setText("Paìs:");
         jPanel4.add(jLabel18);
 
-        txtEmail15.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtEmail15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmail15ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(txtEmail15);
+        txtPais.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jPanel4.add(txtPais);
 
         jLabel20.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel20.setText("Fax:");
         jPanel4.add(jLabel20);
 
-        txtEmail17.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtEmail17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmail17ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(txtEmail17);
+        txtFax.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jPanel4.add(txtFax);
 
         jButton2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButton3.setText("Regresar");
@@ -243,21 +210,21 @@ public class frmBucarProveedor extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
@@ -267,8 +234,8 @@ public class frmBucarProveedor extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultado de búsqueda", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 14))); // NOI18N
 
-        jTable1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbDistribucion.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        tbDistribucion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -287,10 +254,15 @@ public class frmBucarProveedor extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbDistribucion);
 
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButton1.setText("Agregar a Factura");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -356,49 +328,32 @@ public class frmBucarProveedor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEmail19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmail19ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmail19ActionPerformed
+        supplier = new Supplier(0, txtNombreProveedor.getText(),
+                txtNombreContacto.getText(), txtTituloContacto.getText(), txtDireccion.getText(),
+                txtEmail.getText(), txtCiudad.getText(), txtRegion.getText(), txtCodigoPostal.getText(),
+                txtPais.getText(), txtTelefono.getText(), txtFax.getText(), "","");
+        this.modelo.setRowCount(0);
+        alsupplier = supplierImpleCrud.searchSuppliers(supplier);
+        for (Supplier supplier1 : alsupplier) {
+            this.modelo.addRow(new Object[]{supplier1.getCompany_name()});
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void txtEmail10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmail10ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmail10ActionPerformed
-
-    private void txtEmail12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmail12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmail12ActionPerformed
-
-    private void txtEmail14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmail14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmail14ActionPerformed
-
-    private void txtEmail16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmail16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmail16ActionPerformed
-
-    private void txtEmail18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmail18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmail18ActionPerformed
-
-    private void txtEmail9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmail9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmail9ActionPerformed
-
-    private void txtEmail11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmail11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmail11ActionPerformed
-
-    private void txtEmail13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmail13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmail13ActionPerformed
-
-    private void txtEmail15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmail15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmail15ActionPerformed
-
-    private void txtEmail17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmail17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmail17ActionPerformed
+         String valor = this.tbDistribucion.getValueAt(this.tbDistribucion.getSelectedRow(), 0).toString();
+        for (Supplier supplier1 : alsupplier) {
+            if (supplier1.getCompany_name().equals(valor)) {
+                Supplier supplier = new Supplier();
+                supplier = supplier1;
+                formPurchase.busqueda(supplier);
+                this.dispose();
+                break;
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -417,14 +372,71 @@ public class frmBucarProveedor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmBucarProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSearchSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmBucarProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSearchSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmBucarProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSearchSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmBucarProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSearchSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -435,11 +447,6 @@ public class frmBucarProveedor extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmBucarProveedor().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -464,17 +471,17 @@ public class frmBucarProveedor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtEmail10;
-    private javax.swing.JTextField txtEmail11;
-    private javax.swing.JTextField txtEmail12;
-    private javax.swing.JTextField txtEmail13;
-    private javax.swing.JTextField txtEmail14;
-    private javax.swing.JTextField txtEmail15;
-    private javax.swing.JTextField txtEmail16;
-    private javax.swing.JTextField txtEmail17;
-    private javax.swing.JTextField txtEmail18;
-    private javax.swing.JTextField txtEmail19;
-    private javax.swing.JTextField txtEmail9;
+    private javax.swing.JTable tbDistribucion;
+    private javax.swing.JTextField txtCiudad;
+    private javax.swing.JTextField txtCodigoPostal;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtFax;
+    private javax.swing.JTextField txtNombreContacto;
+    private javax.swing.JTextField txtNombreProveedor;
+    private javax.swing.JTextField txtPais;
+    private javax.swing.JTextField txtRegion;
+    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtTituloContacto;
     // End of variables declaration//GEN-END:variables
 }
